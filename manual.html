@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SONIC SUNBURST - MANUAL</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+<nav class="site-nav">
+    <div class="nav-left">
+        <a class="ui-font" href="about.html">Story</a>
+        <a class="ui-font nav-active" href="manual.html">Manual</a>
+    </div>
+
+    <a id="logo-link" href="index.html">
+        <img src="assets/sb_logo.png" alt="SONIC SUNBURST" id="navbar-logo">
+    </a>
+
+    <div class="nav-right">
+        <a class="ui-font" href="download.html">Downloads</a>
+        <a class="ui-font" href="credits.html">Credits</a>
+    </div>
+</nav>
+
+<main>
+    <section>
+        <h1>MANUAL</h1>
+
+        <div class="sunburst-panel media-panel">
+            <div class="media-frame">
+                <video autoplay muted loop playsinline>
+                    <source src="images/timetravel.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div class="media-copy">
+                <h2>TIME TRAVEL</h2>
+                <p>
+                    Sonic can move between the Present and the Past during a stage. Each period has its own
+                    layout details, hazards, and opportunities. The Doomsday Clock pauses in the Past, giving
+                    Sonic time to explore and attack machinery that cannot be damaged in the Present.
+                </p>
+            </div>
+        </div>
+
+        <div class="sunburst-panel media-panel reverse">
+            <div class="media-frame">
+                <video autoplay muted loop playsinline poster="images/insta-shield.png">
+                    <source src="images/instashield.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div class="media-copy">
+                <h2>INSTA-SHIELD</h2>
+                <p>
+                    The Insta-Shield is a core part of Sonic's moveset. It extends his attack range, grants
+                    brief invincibility, and can deflect projectiles when timed correctly.
+                </p>
+                <p>
+                    It also interacts with the environment. Sonic can trigger springs from unusual angles,
+                    pull nearby rings toward himself, bounce from the surface of water, and activate certain
+                    stage objects in ways that open faster or safer routes.
+                </p>
+            </div>
+        </div>
+
+        <div class="sunburst-panel media-panel">
+            <div class="media-frame">
+                <video autoplay muted loop playsinline>
+                    <source src="images/conduits.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div class="media-copy">
+                <h2>LASER CONDUITS</h2>
+
+                <p>
+                    Eggman's conduits feed energy into the Dyson sphere. In the Present they are fully
+                    reinforced and cannot be damaged.
+                </p>
+
+                <p>
+                    In the Past, the same conduits are vulnerable. Each one takes <strong>three hits</strong>
+                    to destroy. Breaking them adds time to the Doomsday Clock and weakens the system powering
+                    Eggman's plan.
+                </p>
+            </div>
+        </div>
+
+        <div class="sunburst-panel media-panel reverse">
+            <div class="media-frame">
+                <img
+                    src="images/doomsday.png"
+                    alt="Doomsday Clock"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                >
+                <div class="media-placeholder" style="display:none;">
+                    Add images/doomsday-clock.png
+                </div>
+            </div>
+
+            <div class="media-copy">
+                <h2>DOOMSDAY CLOCK</h2>
+                <p>
+                    The main campaign is built around a universal countdown that begins with five minutes
+                    remaining. If the clock reaches zero, Sonic runs out of time and Eggman's plan succeeds.
+                </p>
+                <p>
+                    The timer pauses in the Past, during boss sequences, and during act clear screens.
+                    Checkpoints save the current time, so dying restores the amount that was stored when
+                    the last checkpoint was activated.
+                </p>
+            </div>
+        </div>
+
+        <div class="sunburst-panel media-panel">
+            <div class="media-frame">
+                <video autoplay muted loop playsinline>
+                    <source src="images/instabreak.webm" type="video/webm">
+                </video>
+            </div>
+
+            <div class="media-copy">
+                <h2>INSTA-BREAK</h2>
+                <p>
+                    The Insta-Break is a short aerial dash that also gives Sonic a small burst of extra height.
+                    Its distance scales with his current speed, so maintaining momentum makes the move much more effective.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <img
+        class="team-dyson-logo"
+        src="assets/dyson_logo.png"
+        alt="Team Dyson"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    >
+    <div class="team-dyson-name">TEAM DYSON</div>
+
+    <p class="footer-years">2025-2026</p>
+
+    <p class="footer-disclaimer">
+        Sonic Sunburst is a non-profit fan project created by Team Dyson. Sonic the Hedgehog and related characters are owned by SEGA. This project is not affiliated with or endorsed by SEGA or Sonic Team, and it will never be sold.
+    </p>
+</footer>
+</body>
+</html>

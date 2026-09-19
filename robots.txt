@@ -1,0 +1,8 @@
+# ask model training crawlers nicely (if they will even listen)
+User-agent: GPTBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: *
+Disallow:

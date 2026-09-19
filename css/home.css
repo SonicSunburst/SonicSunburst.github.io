@@ -1,0 +1,643 @@
+/* Fonts */
+
+@font-face {
+    font-family: "Exo 2";
+    src: url("../fonts/exo2.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ethnocentric";
+    src: url("../fonts/ethnocentric.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Site values */
+
+:root {
+    --nav-main-height: 64px;
+    --nav-trim-height: 22px;
+    --nav-height: calc(var(--nav-main-height) + var(--nav-trim-height));
+
+    --nav-bg: #000024;
+    --nav-logo-width: 280px;
+    --nav-logo-offset: 40px;
+    --nav-text-size: 1.05em;
+    --nav-gap: 15px;
+    --nav-logo-gap: 32px;
+
+    --page-side-padding: max(180px, 14vw);
+
+    --fire-gradient: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffff00 22%,
+        #ffb400 48%,
+        #ff5400 73%,
+        #ff0000 100%
+    );
+}
+
+html {
+    background: black;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: black;
+    background-image: url("../assets/bg_logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/*
+ * The animated side strips live in a foreground layer so they can pass over
+ * the header without blocking links.
+ */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+
+    background-image:
+        url("../assets/border_r.png"),
+        url("../assets/border_l.png"),
+        url("../assets/border_r2.png"),
+        url("../assets/border_l2.png");
+
+    background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
+
+    background-position:
+        right top,
+        left top,
+        right 48px top,
+        left 48px top;
+}
+
+
+/* Navigation */
+
+.site-nav {
+    width: 100%;
+    height: var(--nav-height);
+    position: relative;
+    z-index: 9999;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding: 0 30px var(--nav-trim-height);
+
+    background: var(--nav-bg);
+    overflow: visible;
+}
+
+.site-nav::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--nav-trim-height);
+    height: 3px;
+
+    background: repeating-linear-gradient(
+        to right,
+        #000024 0 5px,
+        #000 5px 10px
+    );
+}
+
+.site-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--nav-trim-height);
+
+    background: linear-gradient(
+        to bottom,
+        #000 0 18%,
+        #ff0000 18% 27%,
+        #ff4800 27% 36%,
+        #ff6c00 36% 45%,
+        #ffff00 45% 91%,
+        #ffb400 91% 100%
+    );
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--nav-gap);
+
+    position: relative;
+    z-index: 2;
+}
+
+.nav-left {
+    justify-content: flex-end;
+}
+
+.nav-right {
+    justify-content: flex-start;
+}
+
+
+/*
+ * The logo is intentionally taller than the bar and hangs below it.
+ * The grid keeps the logo centered even when the menu labels differ in width.
+ */
+#logo-link {
+    height: var(--nav-main-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 var(--nav-logo-gap);
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+
+#navbar-logo {
+    width: var(--nav-logo-width);
+    height: auto;
+    display: block;
+
+    transform: translateY(var(--nav-logo-offset));
+
+    /* Permanent outline. */
+    filter:
+        drop-shadow(-1px -1px 0 black)
+        drop-shadow(1px -1px 0 black)
+        drop-shadow(-1px 1px 0 black)
+        drop-shadow(1px 1px 0 black)
+        drop-shadow(2px 2px 0 black)
+        drop-shadow(-3px -1px 0 white)
+        drop-shadow(3px -1px 0 white)
+        drop-shadow(-3px 3px 0 white)
+        drop-shadow(3px 3px 0 white);
+}
+
+#navbar-logo:hover {
+    transform: translateY(calc(var(--nav-logo-offset) + 5px));
+}
+
+
+/* Navigation text */
+
+.ui-font {
+    padding: 10px 12px;
+
+    font-family: "Ethnocentric", sans-serif;
+    font-size: var(--nav-text-size);
+    line-height: 1;
+    text-decoration: none;
+
+    color: transparent !important;
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    background-image: linear-gradient(
+        to bottom,
+        #626262 0%,
+        #626262 55%,
+        #383838 55%,
+        #383838 100%
+    );
+
+    filter:
+        drop-shadow(-1px -1px 0 black)
+        drop-shadow(1px -1px 0 black)
+        drop-shadow(-1px 1px 0 black)
+        drop-shadow(1px 1px 0 black)
+        drop-shadow(2px 2px 0 black);
+}
+
+.site-nav .ui-font:hover {
+    transform: translateY(5px);
+}
+
+.ui-font:hover,
+.ui-font.nav-active,
+.download-link a {
+    background-image: var(--fire-gradient);
+    cursor: pointer;
+}
+
+
+/* Main content */
+
+section {
+    padding: 0 var(--page-side-padding);
+    margin: 105px 0 90px;
+}
+
+h1,
+h2 {
+    font-family: "Ethnocentric", sans-serif;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 42px;
+
+    font-size: 2.5em;
+    font-weight: normal;
+    text-align: center;
+
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black,
+        0 4px 0 black;
+}
+
+h2 {
+    margin: 28px 0 10px;
+    font-size: 1.4em;
+    font-weight: normal;
+}
+
+p,
+li {
+    font-family: "Exo 2", sans-serif;
+    font-size: 1.22em;
+    line-height: 1.55;
+    color: white;
+}
+
+
+/* Reusable blue Sunburst box
+ *
+ * Any element can use class="sunburst-panel".
+ */
+.sunburst-panel {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    padding: 24px;
+
+    background:
+        radial-gradient(ellipse at 2% 2%, #0d0d78 0 17%, transparent 17.5%),
+        radial-gradient(ellipse at 98% 98%, #0d0d78 0 20%, transparent 20.5%),
+        #02024a;
+
+    border: 4px solid #ffff00;
+
+    box-shadow:
+        inset 0 0 0 2px #ff4800,
+        inset 0 0 0 4px #ffb400,
+        inset 0 0 0 6px black;
+}
+
+/* Faint sun mark from the reference panel. */
+.sunburst-panel::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 0;
+
+    width: 78px;
+    height: 78px;
+
+    transform: translate(-50%, -50%);
+    opacity: 0.24;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle, transparent 0 18px, #000032 18px 21px, transparent 21px),
+        conic-gradient(
+            from 0deg,
+            #000032 0 8deg,
+            transparent 8deg 37deg,
+            #000032 37deg 45deg,
+            transparent 45deg 82deg,
+            #000032 82deg 90deg,
+            transparent 90deg 127deg,
+            #000032 127deg 135deg,
+            transparent 135deg 172deg,
+            #000032 172deg 180deg,
+            transparent 180deg 217deg,
+            #000032 217deg 225deg,
+            transparent 225deg 262deg,
+            #000032 262deg 270deg,
+            transparent 270deg 307deg,
+            #000032 307deg 315deg,
+            transparent 315deg 352deg,
+            #000032 352deg 360deg
+        );
+}
+
+.sunburst-panel > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Screenshot / video feature box */
+
+.media-panel {
+    display: grid;
+    grid-template-columns: minmax(270px, 0.95fr) minmax(300px, 1.05fr);
+    gap: 30px;
+    align-items: center;
+
+    margin: 34px 0;
+}
+
+.media-panel.reverse .media-frame {
+    order: 2;
+}
+
+.media-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background: #000020;
+    border: 2px solid #ffb400;
+
+    box-shadow:
+        0 0 0 2px black,
+        0 0 0 4px #ff4800;
+}
+
+.media-frame img,
+.media-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.media-placeholder {
+    padding: 20px;
+
+    font-family: "Exo 2", sans-serif;
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-align: center;
+
+    color: #9a9ac1;
+}
+
+.media-copy h2 {
+    margin-top: 0;
+}
+
+
+/* Home */
+
+.introduction-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 42px;
+}
+
+.introduction-block .intro-copy {
+    flex: 1 1 48%;
+}
+
+.introduction-block img {
+    flex: 1 1 40%;
+    width: 100%;
+    min-width: 300px;
+}
+
+.download-link {
+    width: fit-content;
+    margin: 55px auto;
+    font-size: 120%;
+}
+
+.download-link:hover {
+    transform: scale(1.05);
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+}
+
+.gallery img {
+    width: min(420px, 100%);
+}
+
+.border {
+    position: relative;
+
+    outline: 10px solid white;
+    border-left: 5px solid black;
+    border-top: 5px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+
+/* Credits */
+
+.credit-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 26px;
+}
+
+.credit-group h2 {
+    margin-top: 0;
+}
+
+.credit-group p {
+    margin-bottom: 0;
+}
+
+.credits-section {
+    text-align: center;
+}
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 90px auto 45px;
+    padding: 0 max(45px, 12vw);
+
+    text-align: center;
+}
+
+.team-dyson-logo {
+    width: min(300px, 58vw);
+    height: auto;
+    margin-bottom: 14px;
+}
+
+.team-dyson-name {
+    display: none;
+
+    margin-bottom: 12px;
+
+    font-family: "Ethnocentric", sans-serif;
+    font-size: 1.45em;
+    color: white;
+}
+
+.footer-years {
+    margin: 0 0 12px;
+
+    font-family: "Ethnocentric", sans-serif;
+    font-size: 0.9em;
+    color: white;
+}
+
+.footer-disclaimer {
+    max-width: 900px;
+    margin: 0;
+
+    font-family: "Exo 2", sans-serif;
+    font-size: 0.78em;
+    line-height: 1.5;
+    color: #999;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1100px) {
+    :root {
+        --nav-logo-width: 210px;
+        --nav-logo-offset: 28px;
+        --nav-logo-gap: 15px;
+        --nav-text-size: 0.82em;
+        --nav-gap: 6px;
+        --page-side-padding: max(90px, 9vw);
+    }
+
+    .site-nav {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+    :root {
+        --nav-logo-width: 230px;
+        --nav-logo-offset: 0px;
+        --page-side-padding: 34px;
+    }
+
+    .site-nav {
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 10px;
+
+        padding: 15px 20px calc(15px + var(--nav-trim-height));
+    }
+
+    #logo-link {
+        height: auto;
+        grid-row: 1;
+        margin: 0;
+    }
+
+    #navbar-logo {
+        transform: none;
+    }
+
+    #navbar-logo:hover {
+        transform: translateY(5px);
+    }
+
+    .nav-left,
+    .nav-right {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-left {
+        grid-row: 2;
+    }
+
+    .nav-right {
+        grid-row: 3;
+    }
+
+    .media-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .media-panel.reverse .media-frame {
+        order: 0;
+    }
+
+    .credit-groups {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Motion */
+
+@media (prefers-reduced-motion: no-preference) {
+    body::before {
+        animation: border-scrolling 2s linear infinite;
+    }
+
+    #navbar-logo,
+    .ui-font,
+    .download-link {
+        transition: 0.1s ease-in-out;
+    }
+
+    @keyframes border-scrolling {
+        from {
+            background-position:
+                right top,
+                left top,
+                right 48px top,
+                left 48px top;
+        }
+
+        to {
+            background-position:
+                right 176px,
+                left 176px,
+                right 48px top 88px,
+                left 48px top 88px;
+        }
+    }
+}
