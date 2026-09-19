@@ -56,34 +56,6 @@ body {
     background-attachment: fixed;
 }
 
-
-/*
- * The animated side strips live in a foreground layer so they can pass over
- * the header without blocking links.
- */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    pointer-events: none;
-
-    background-image:
-        url("../assets/border_r.png"),
-        url("../assets/border_l.png"),
-        url("../assets/border_r2.png"),
-        url("../assets/border_l2.png");
-
-    background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
-
-    background-position:
-        right top,
-        left top,
-        right 48px top,
-        left 48px top;
-}
-
-
 /* Navigation */
 
 .site-nav {
