@@ -31,12 +31,35 @@
     <section>
         <h1>DOWNLOADS</h1>
 
-        <div class="sunburst-panel">
-            <h2>DEMO</h2>
-            <p>
-                Sonic Sunburst is still in development. A public build is not available yet.
-                This page will be updated with the official download once a release is ready.
-            </p>
+        <div class="sunburst-panel download-intro">
+            <h2>CGS 2026 DEMO</h2>
+            <p>The demo includes Tropical Tideline and Time Attack.</p>
+            <div id="release-countdown" class="release-countdown" role="status" aria-live="off">
+                <span class="countdown-label">Downloads unlock in</span>
+                <strong id="countdown-value">--d --:--:--</strong>
+            </div>
+            <p id="release-status" class="release-status" aria-live="polite">Releases November 1, 2026 at 17:00 UTC.</p>
+        </div>
+
+        <div id="download-grid" class="download-grid" hidden>
+            <article class="sunburst-panel download-card">
+                <img src="assets/windows-8.png" alt="" aria-hidden="true">
+                <h2>WINDOWS</h2>
+                <p>64-bit Windows demo</p>
+                <a href="https://drive.google.com/file/d/1bbHxk7FXE8vgIzXlqeo2qvTZjsMjPFQl/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Windows</a>
+            </article>
+            <article class="sunburst-panel download-card">
+                <img src="assets/linux-platform.png" alt="" aria-hidden="true">
+                <h2>LINUX</h2>
+                <p>64-bit AppImage demo</p>
+                <a href="https://drive.google.com/file/d/1Us8b1_zV9E6LtDwqiz7VIXt0rBoPwrBd/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Linux</a>
+            </article>
+            <article class="sunburst-panel download-card">
+                <img src="assets/nintendo-switch.png" alt="" aria-hidden="true">
+                <h2>SWITCH</h2>
+                <p>Homebrew demo</p>
+                <a href="https://drive.google.com/file/d/1OJp87hIBV3zWG8FoC2lzKE4LyBptSvze/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Switch</a>
+            </article>
         </div>
     </section>
 </main>
@@ -56,5 +79,31 @@
         Sonic Sunburst is a non-profit fan project created by Team Dyson. Sonic the Hedgehog and related characters are owned by SEGA. This project is not affiliated with or endorsed by SEGA or Sonic Team, and it will never be sold.
     </p>
 </footer>
+<script>
+(() => {
+    const releaseAt = Date.parse("2026-11-01T17:00:00Z");
+    const countdown = document.getElementById("release-countdown");
+    const value = document.getElementById("countdown-value");
+    const status = document.getElementById("release-status");
+    const downloads = document.getElementById("download-grid");
+
+    function update() {
+        const remaining = Math.max(0, Math.ceil((releaseAt - Date.now()) / 1000));
+        const days = Math.floor(remaining / 86400);
+        const hours = Math.floor((remaining % 86400) / 3600);
+        const minutes = Math.floor((remaining % 3600) / 60);
+        const seconds = remaining % 60;
+        value.textContent = `${days}d ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+        if (remaining > 0) return;
+        countdown.hidden = true;
+        downloads.hidden = false;
+        status.textContent = "The demo is live.";
+        clearInterval(interval);
+    }
+
+    const interval = setInterval(update, 250);
+    update();
+})();
+</script>
 </body>
 </html>

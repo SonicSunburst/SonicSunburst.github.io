@@ -322,6 +322,80 @@ li {
     z-index: 1;
 }
 
+.download-intro {
+    text-align: center;
+}
+
+.release-countdown {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0;
+    font-family: "Ethnocentric", sans-serif;
+    color: #fff;
+}
+
+.release-countdown strong {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: transparent;
+    background-image: var(--fire-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-variant-numeric: tabular-nums;
+    filter:
+        drop-shadow(-1px -1px 0 black)
+        drop-shadow(1px -1px 0 black)
+        drop-shadow(-1px 1px 0 black)
+        drop-shadow(1px 1px 0 black)
+        drop-shadow(2px 2px 0 black);
+}
+
+.release-status {
+    margin-bottom: 0;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 28px;
+}
+
+.download-grid[hidden],
+.release-countdown[hidden] {
+    display: none;
+}
+
+.download-card {
+    text-align: center;
+}
+
+.download-card img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin: 0 auto 12px;
+}
+
+.download-card h2 {
+    margin: 0;
+}
+
+.download-card a {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 2px solid #ffcf00;
+    color: #fff;
+    font-family: "Ethnocentric", sans-serif;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.download-card a:hover,
+.download-card a:focus-visible {
+    background: #b23a00;
+}
+
 
 /* Screenshot / video feature box */
 
@@ -578,6 +652,10 @@ footer {
     }
 
     .credit-groups {
+        grid-template-columns: 1fr;
+    }
+
+    .download-grid {
         grid-template-columns: 1fr;
     }
 }
